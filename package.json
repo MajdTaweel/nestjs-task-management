@@ -18,9 +18,9 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "build:webpack": "wait-on http-get://localhost:3000/ && nest build --watch --webpack",
-    "start:hmr": "node dist/main",
-    "hmr": "npm-run-all -p -r build:webpack start:hmr"
+    "build:webpack": "nest build --watch --webpack",
+    "start:hmr": "wait-on dist/main.js && node dist/main",
+    "hmr": "npm-run-all prebuild -p -r build:webpack start:hmr"
   },
   "dependencies": {
     "@nestjs/common": "^6.7.2",
@@ -49,6 +49,7 @@
     "tslint": "^5.20.0",
     "typescript": "^3.6.3",
     "wait-on": "^3.3.0",
+    "webpack": "latest",
     "webpack-node-externals": "^1.7.2"
   },
   "jest": {
